@@ -47,6 +47,8 @@ namespace Alzaitu.Indroduction.Complex
 
         public override int GetHashCode() => (int)(Real * 1000) ^ (int)(Imaginary * 10);
 
+        public override bool Equals(object obj) => obj is Complex c && this == c;
+
         public int CompareTo(Complex other) => Magnitude.CompareTo(other.Magnitude);
 
         public static implicit operator Complex(double real) => new Complex(real);
@@ -58,5 +60,13 @@ namespace Alzaitu.Indroduction.Complex
         public static Complex operator -(Complex one, Complex two) => new Complex(one.Real - two.Real, one.Imaginary - two.Imaginary);
 
         public static Complex operator *(Complex one, Complex two) => new Complex(one.Real * two.Real - one.Imaginary * two.Imaginary, one.Real * two.Imaginary + one.Imaginary * two.Real);
+
+        public static bool operator ==(Complex one, Complex two) => one.CompareTo(two) == 0;
+
+        public static bool operator !=(Complex one, Complex two) => one.CompareTo(two) != 0;
+
+        public static bool operator <(Complex one, Complex two) => one.CompareTo(two) < 0;
+
+        public static bool operator >(Complex one, Complex two) => one.CompareTo(two) > 0;
     }
 }
